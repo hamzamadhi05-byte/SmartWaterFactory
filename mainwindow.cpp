@@ -3,6 +3,15 @@
 #include "client.h"
 #include <QMessageBox>
 #include <QRegularExpression>
+#include <QPdfWriter>
+#include <QPageSize>
+#include <QPainter>
+#include <QFileDialog>
+#include <QFile>
+#include <QTextStream>
+#include <QStringConverter>
+#include <QSqlQuery>
+#include <QDate>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -123,4 +132,82 @@ void MainWindow::on_btnActualiser_clicked()
 {
     ui->leRecherche->clear();
     rafraichir();
+}
+
+void MainWindow::on_btnPdf_clicked()
+{
+    QString id = ui->leId->text().trimmed();
+    if (id.isEmpty()) {
+        QMessageBox::warning(this, "Erreur", "Sélectionnez d'abord un client dans le tableau.");
+        return;
+    }
+
+    QSqlQuery q;
+    q.prepare("SELECT ID_CLIENT, NOM, TYPE_CLIENT, TELEPHONE, EMAIL, ADRESSE, "
+              "NB_COMMANDES, CATEGORIE, STATUT FROM CLIENT WHERE ID_CLIENT=:id");
+    q.bindValue(":id", id.toInt());
+    if (!q.exec() || !q.next()) {
+        QMessageBox::critical(this, "Erreur", "Client introuvable.");
+        return;
+    }
+
+    QString fichier = QFileDialog::getSaveFileName(this, "Enregistrer la fiche",
+                                                   "fiche_client_" + id + ".pdf",
+                                                   "PDF (*.pdf)");
+    if (fichier.isEmpty())
+        return;
+
+    QPdfWriter pdf(fichier);
+    pdf.setPageSize(QPageSize(QPageSize::A4));
+    pdf.setResolution(120);
+    QPainter p(&pdf);
+
+    p.setPen(QColor("#1F5C99"));
+    p.setFont(QFont("Arial", 22, QFont::Bold));
+    p.drawText(100, 150, "Smart Water Factory");
+    p.setFont(QFont("Arial", 16, QFont::Bold));
+    p.drawText(100, 230, "Fiche client");
+
+    p.setPen(Qt::black);
+    p.setFont(QFont("Arial", 12));
+    QStringList labels = {"ID Client", "Nom", "Type", "Téléphone", "Email",
+                          "Adresse", "Nb commandes", "Catégorie", "Statut"};
+    int y = 330;
+    for (int i = 0; i < labels.size(); ++i) {
+        p.drawText(100, y, labels[i] + " : " + q.value(i).toString());
+        y += 80;
+    }
+    p.drawText(100, y + 60, "Généré le " + QDate::currentDate().toString("dd/MM/yyyy"));
+    p.end();
+
+    QMessageBox::information(this, "Succès", "Fiche PDF enregistrée.");
+}
+
+void MainWindow::on_btnExcel_clicked()
+{
+    QString fichier = QFileDialog::getSaveFileName(this, "Exporter la liste",
+                                                   "clients.csv", "CSV (*.csv)");
+    if (fichier.isEmpty())
+        return;
+
+    QFile f(fichier);
+    if (!f.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QMessageBox::critical(this, "Erreur", "Impossible de créer le fichier.");
+        return;
+    }
+    QTextStream out(&f);
+    out.setEncoding(QStringConverter::Utf8);
+    out.setGenerateByteOrderMark(true);
+    out << "ID;Nom;Type;Téléphone;Email;Adresse;Nb commandes;Catégorie;Statut\n";
+
+    QSqlQuery q("SELECT ID_CLIENT, NOM, TYPE_CLIENT, TELEPHONE, EMAIL, ADRESSE, "
+                "NB_COMMANDES, CATEGORIE, STATUT FROM CLIENT");
+    while (q.next()) {
+        QStringList ligne;
+        for (int i = 0; i < 9; ++i)
+            ligne << q.value(i).toString();
+        out << ligne.join(";") << "\n";
+    }
+    f.close();
+    QMessageBox::information(this, "Succès", "Liste exportée (ouvrable avec Excel).");
 }

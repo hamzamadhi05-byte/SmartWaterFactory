@@ -24,6 +24,8 @@ private slots:
     void on_leRecherche_textChanged(const QString &texte);
     void on_btnTri_clicked();
     void on_btnActualiser_clicked();
+    void on_btnPdf_clicked();
+    void on_btnExcel_clicked();
 
 private:
     Ui::MainWindow *ui;

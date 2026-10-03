@@ -224,6 +224,32 @@
      <string>Rechercher par nom...</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnPdf">
+    <property name="geometry">
+     <rect>
+      <x>529</x>
+      <y>30</y>
+      <width>101</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Exporter PDF</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnExcel">
+    <property name="geometry">
+     <rect>
+      <x>659</x>
+      <y>30</y>
+      <width>101</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Exporter Excel</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
