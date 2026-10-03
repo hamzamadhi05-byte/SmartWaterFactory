@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "client.h"
+#include "statsdialog.h"
 #include <QMessageBox>
 #include <QRegularExpression>
 #include <QPdfWriter>
@@ -58,7 +59,6 @@ bool MainWindow::saisieValide()
     }
     return true;
 }
-
 void MainWindow::on_btnAjouter_clicked()
 {
     if (!saisieValide())
@@ -238,4 +238,10 @@ void MainWindow::on_btnInactifs_clicked()
         QMessageBox::warning(this, "Alerte relance",
                              QString::number(n) + " client(s) inactif(s) à relancer "
                                                   "(aucune commande depuis plus de 6 mois).");
+}
+
+void MainWindow::on_btnStats_clicked()
+{
+    StatsDialog dlg(this);
+    dlg.exec();
 }

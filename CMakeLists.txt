@@ -26,6 +26,7 @@ set(PROJECT_SOURCES
 qt_add_executable(hamza
     MANUAL_FINALIZATION
     ${PROJECT_SOURCES}
+    statsdialog.h statsdialog.cpp
 )
 
 target_link_libraries(hamza PRIVATE

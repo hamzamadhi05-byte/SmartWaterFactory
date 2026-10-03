@@ -28,6 +28,7 @@ private slots:
     void on_btnExcel_clicked();
     void on_btnCategorie_clicked();
     void on_btnInactifs_clicked();
+    void on_btnStats_clicked();
 
 private:
     Ui::MainWindow *ui;
