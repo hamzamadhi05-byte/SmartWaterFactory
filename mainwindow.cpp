@@ -211,3 +211,14 @@ void MainWindow::on_btnExcel_clicked()
     f.close();
     QMessageBox::information(this, "Succès", "Liste exportée (ouvrable avec Excel).");
 }
+
+void MainWindow::on_btnCategorie_clicked()
+{
+    Client c;
+    if (c.mettreAJourCategories()) {
+        QMessageBox::information(this, "Succès", "Catégories mises à jour.");
+        rafraichir();
+    } else {
+        QMessageBox::critical(this, "Erreur", "Mise à jour impossible.");
+    }
+}

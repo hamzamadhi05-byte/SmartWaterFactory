@@ -26,6 +26,7 @@ private slots:
     void on_btnActualiser_clicked();
     void on_btnPdf_clicked();
     void on_btnExcel_clicked();
+    void on_btnCategorie_clicked();
 
 private:
     Ui::MainWindow *ui;

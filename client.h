@@ -20,6 +20,7 @@ public:
     bool supprimer(int id);
     QSqlQueryModel* rechercher(QString nom);
     QSqlQueryModel* trierParNbCommandes();
+    bool mettreAJourCategories();
 };
 
 #endif

@@ -250,6 +250,19 @@
      <string>Exporter Excel</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnCategorie">
+    <property name="geometry">
+     <rect>
+      <x>549</x>
+      <y>518</y>
+      <width>261</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Mettre à jour les catégories</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

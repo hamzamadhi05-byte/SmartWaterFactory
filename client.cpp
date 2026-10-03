@@ -76,3 +76,12 @@ QSqlQueryModel* Client::trierParNbCommandes()
                     "ORDER BY NB_COMMANDES DESC");
     return model;
 }
+
+bool Client::mettreAJourCategories()
+{
+    QSqlQuery q;
+    return q.exec("UPDATE CLIENT SET CATEGORIE = CASE "
+                  "WHEN NB_COMMANDES >= 10 THEN 'VIP' "
+                  "WHEN NB_COMMANDES >= 3 THEN 'Régulier' "
+                  "ELSE 'Nouveau' END");
+}
