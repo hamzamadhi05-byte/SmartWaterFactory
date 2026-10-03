@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>1323</width>
     <height>600</height>
    </rect>
   </property>
@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btnAjouter">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -24,10 +24,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>ajouter</string>
+     <string>Ajouter</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="btnModifier">
     <property name="geometry">
      <rect>
       <x>650</x>
@@ -37,10 +37,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>modifer</string>
+     <string>Modifer</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="btnSupprimer">
     <property name="geometry">
      <rect>
       <x>500</x>
@@ -50,10 +50,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>supprimer</string>
+     <string>Supprimer</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="cbType">
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -151,7 +151,7 @@
      <string>type</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="leId">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -161,7 +161,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="leNom">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -171,7 +171,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_4">
+   <widget class="QLineEdit" name="leEmail">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -181,7 +181,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_5">
+   <widget class="QLineEdit" name="leAdresse">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -191,7 +191,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_6">
+   <widget class="QLineEdit" name="leTel">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -201,7 +201,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTableView" name="tableView">
+   <widget class="QTableView" name="tableClients">
     <property name="geometry">
      <rect>
       <x>345</x>
@@ -217,7 +217,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1323</width>
      <height>25</height>
     </rect>
    </property>
