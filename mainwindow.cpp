@@ -162,7 +162,7 @@ void MainWindow::on_btnPdf_clicked()
     pdf.setResolution(120);
     QPainter p(&pdf);
 
-    p.setPen(QColor("#1F5C99"));
+    p.setPen(QColor(31, 92, 153));
     p.setFont(QFont("Arial", 22, QFont::Bold));
     p.drawText(100, 150, "Smart Water Factory");
     p.setFont(QFont("Arial", 16, QFont::Bold));
@@ -221,4 +221,21 @@ void MainWindow::on_btnCategorie_clicked()
     } else {
         QMessageBox::critical(this, "Erreur", "Mise à jour impossible.");
     }
+}
+
+void MainWindow::on_btnInactifs_clicked()
+{
+    Client c;
+    int n = c.detecterInactifs();
+    if (n < 0) {
+        QMessageBox::critical(this, "Erreur", "Détection impossible.");
+        return;
+    }
+    rafraichir();
+    if (n == 0)
+        QMessageBox::information(this, "Alerte relance", "Aucun client inactif détecté.");
+    else
+        QMessageBox::warning(this, "Alerte relance",
+                             QString::number(n) + " client(s) inactif(s) à relancer "
+                                                  "(aucune commande depuis plus de 6 mois).");
 }

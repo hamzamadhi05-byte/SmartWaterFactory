@@ -27,6 +27,7 @@ private slots:
     void on_btnPdf_clicked();
     void on_btnExcel_clicked();
     void on_btnCategorie_clicked();
+    void on_btnInactifs_clicked();
 
 private:
     Ui::MainWindow *ui;

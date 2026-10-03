@@ -263,6 +263,19 @@
      <string>Mettre à jour les catégories</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnInactifs">
+    <property name="geometry">
+     <rect>
+      <x>569</x>
+      <y>370</y>
+      <width>171</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Détecter les inactifs</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -28,7 +28,7 @@ bool Client::ajouter()
 
 QSqlQueryModel* Client::afficher()
 {
-    QSqlQueryModel* model = new QSqlQueryModel();
+    ClientModel* model = new ClientModel();
     model->setQuery("SELECT ID_CLIENT, NOM, TYPE_CLIENT, TELEPHONE, EMAIL, ADRESSE, "
                     "NB_COMMANDES, CATEGORIE, STATUT FROM CLIENT");
     return model;
@@ -58,7 +58,7 @@ bool Client::supprimer(int id)
 
 QSqlQueryModel* Client::rechercher(QString nom)
 {
-    QSqlQueryModel* model = new QSqlQueryModel();
+    ClientModel* model = new ClientModel();
     QSqlQuery q;
     q.prepare("SELECT ID_CLIENT, NOM, TYPE_CLIENT, TELEPHONE, EMAIL, ADRESSE, "
               "NB_COMMANDES, CATEGORIE, STATUT FROM CLIENT WHERE NOM LIKE :nom");
@@ -70,7 +70,7 @@ QSqlQueryModel* Client::rechercher(QString nom)
 
 QSqlQueryModel* Client::trierParNbCommandes()
 {
-    QSqlQueryModel* model = new QSqlQueryModel();
+    ClientModel* model = new ClientModel();
     model->setQuery("SELECT ID_CLIENT, NOM, TYPE_CLIENT, TELEPHONE, EMAIL, ADRESSE, "
                     "NB_COMMANDES, CATEGORIE, STATUT FROM CLIENT "
                     "ORDER BY NB_COMMANDES DESC");
@@ -84,4 +84,17 @@ bool Client::mettreAJourCategories()
                   "WHEN NB_COMMANDES >= 10 THEN 'VIP' "
                   "WHEN NB_COMMANDES >= 3 THEN 'Régulier' "
                   "ELSE 'Nouveau' END");
+}
+
+// Yرجa3 3adad el clients li wallew Inactif (-1 ken fama erreur)
+int Client::detecterInactifs()
+{
+    QSqlQuery q;
+    bool ok = q.exec("UPDATE CLIENT SET STATUT = 'Inactif' "
+                     "WHERE STATUT = 'Actif' "
+                     "AND COALESCE(DATE_DERNIERE_CMD, DATE_INSCRIPTION) "
+                     "< date('now', '-6 months')");
+    if (!ok)
+        return -1;
+    return q.numRowsAffected();
 }
