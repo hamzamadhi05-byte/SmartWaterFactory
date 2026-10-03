@@ -76,3 +76,21 @@ void MainWindow::on_tableClients_clicked(const QModelIndex &index)
     ui->leEmail->setText(m->index(row, 4).data().toString());
     ui->leAdresse->setText(m->index(row, 5).data().toString());
 }
+
+void MainWindow::on_leRecherche_textChanged(const QString &texte)
+{
+    Client c;
+    ui->tableClients->setModel(c.rechercher(texte));
+}
+
+void MainWindow::on_btnTri_clicked()
+{
+    Client c;
+    ui->tableClients->setModel(c.trierParNbCommandes());
+}
+
+void MainWindow::on_btnActualiser_clicked()
+{
+    ui->leRecherche->clear();
+    rafraichir();
+}

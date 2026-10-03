@@ -18,6 +18,8 @@ public:
     QSqlQueryModel* afficher();
     bool modifier();
     bool supprimer(int id);
+    QSqlQueryModel* rechercher(QString nom);
+    QSqlQueryModel* trierParNbCommandes();
 };
 
 #endif

@@ -21,7 +21,9 @@ private slots:
     void on_btnModifier_clicked();
     void on_btnSupprimer_clicked();
     void on_tableClients_clicked(const QModelIndex &index);
-
+    void on_leRecherche_textChanged(const QString &texte);
+    void on_btnTri_clicked();
+    void on_btnActualiser_clicked();
 private:
     Ui::MainWindow *ui;
     void rafraichir();

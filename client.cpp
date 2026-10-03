@@ -55,3 +55,24 @@ bool Client::supprimer(int id)
     q.bindValue(":id", id);
     return q.exec();
 }
+
+QSqlQueryModel* Client::rechercher(QString nom)
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+    QSqlQuery q;
+    q.prepare("SELECT ID_CLIENT, NOM, TYPE_CLIENT, TELEPHONE, EMAIL, ADRESSE, "
+              "NB_COMMANDES, CATEGORIE, STATUT FROM CLIENT WHERE NOM LIKE :nom");
+    q.bindValue(":nom", "%" + nom + "%");
+    q.exec();
+    model->setQuery(std::move(q));
+    return model;
+}
+
+QSqlQueryModel* Client::trierParNbCommandes()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+    model->setQuery("SELECT ID_CLIENT, NOM, TYPE_CLIENT, TELEPHONE, EMAIL, ADRESSE, "
+                    "NB_COMMANDES, CATEGORIE, STATUT FROM CLIENT "
+                    "ORDER BY NB_COMMANDES DESC");
+    return model;
+}
