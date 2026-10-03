@@ -24,9 +24,11 @@ private slots:
     void on_leRecherche_textChanged(const QString &texte);
     void on_btnTri_clicked();
     void on_btnActualiser_clicked();
+
 private:
     Ui::MainWindow *ui;
     void rafraichir();
+    bool saisieValide();
 };
 
 #endif // MAINWINDOW_H
