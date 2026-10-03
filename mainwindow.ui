@@ -302,17 +302,17 @@
      <string>Trier par nb commandes</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnActualiser">
+   <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
       <x>100</x>
       <y>480</y>
-      <width>131</width>
+      <width>90</width>
       <height>29</height>
      </rect>
     </property>
     <property name="text">
-     <string>Actualiser</string>
+     <string>PushButton</string>
     </property>
    </widget>
   </widget>
